@@ -2,184 +2,214 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'SF Pro Display';
+  font-weight: 100;
+  font-style: italic;
+  src: url('./fonts/SFPRODISPLAYULTRALIGHTITALIC.woff2') format('woff2');
+}
 
 @font-face {
-    font-family: 'SF Pro Display';
-    font-weight: 100;
-    font-style: italic;
-    src: url('./fonts/SFPRODISPLAYULTRALIGHTITALIC.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-family: 'SF Pro Display';
-    font-weight: 200;
-    font-style: italic;
-    src: url('./fonts/SFPRODISPLAYTHINITALIC.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-family: 'SF Pro Display';
-    font-weight: 600;
-    font-style: italic;
-    src: url('./fonts/SFPRODISPLAYSEMIBOLDITALIC.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-family: 'SF Pro Display';
-    font-weight: 400;
-    font-style: normal;
-    src: url('./fonts/SFPRODISPLAYREGULAR.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-family: 'SF Pro Display';
-    font-weight: 500;
-    font-style: normal;
-    src: url('./fonts/SFPRODISPLAYMEDIUM.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-family: 'SF Pro Display';
-    font-weight: 300;
-    font-style: italic;
-    src: url('./fonts/SFPRODISPLAYLIGHTITALIC.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-family: 'SF Pro Display';
-    font-weight: 900;
-    font-style: italic;
-    src: url('./fonts/SFPRODISPLAYHEAVYITALIC.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-family: 'SF Pro Display';
-    font-weight: 700;
-    font-style: normal;
-    src: url('./fonts/SFPRODISPLAYBOLD.woff2') format('woff2');
-  }
-  
-  @font-face {
-    font-family: 'SF Pro Display';
-    font-weight: 900;
-    font-style: italic;
-    src: url('./fonts/SFPRODISPLAYBLACKITALIC.woff2') format('woff2');
-  }
-  
-  /* Add these styles to index.css */
+  font-family: 'SF Pro Display';
+  font-weight: 200;
+  font-style: italic;
+  src: url('./fonts/SFPRODISPLAYTHINITALIC.woff2') format('woff2');
+}
 
-  :root {
-    --bg-color-light: #ffffff;
-    --bg-color-dark: #121212;
-    --text-color-light: #000000;
-    --text-color-dark: #e0e0e0;
-    --card-bg-light: #f8f9fa;  /* Light background for cards */
-    --card-bg-dark: #1f1f1f;  /* Dark background for cards */
-    --card-text-light: #212529;  /* Dark text for cards */
-    --card-text-dark: #f1f1f1;  /* Light text for cards */
-    --date-color-light: #6c757d;  /* Lighter text for date and time in light theme */
-    --date-color-dark: #adb5bd;  /* Lighter text for date and time in dark theme */
-  }
-  
-  body {
-    font-family: 'SF Pro Display', sans-serif;
-  }
-  
-  .light {
-    background-color: var(--bg-color-light);
-    color: var(--text-color-light);
-  }
-  
-  .dark {
-    background-color: var(--bg-color-dark);
-    color: var(--text-color-dark);
-  }
-  
-  /* Override Tailwind classes for the light/dark theme */
-  .light .bg-light {
-    background-color: var(--bg-color-light);
-  }
-  
-  .dark .bg-dark {
-    background-color: var(--bg-color-dark);
-  }
-  
-  .light .text-light {
-    color: var(--text-color-light);
-  }
-  
-  .dark .text-dark {
-    color: var(--text-color-dark);
-  }
-  
-  .light .card-bg {
-    background-color: var(--card-bg-light);
-    color: var(--card-text-light);
-  }
-  
-  .dark .card-bg {
-    background-color: var(--card-bg-dark);
-    color: var(--card-text-dark);
-  }
-  
-  .light .date-text {
-    color: var(--date-color-light);
-  }
-  
-  .dark .date-text {
-    color: var(--date-color-dark);
-  }
-  
-  .truncate-3-lines {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
-  }
-  
-  /* Add these styles to index.css */
-/* Add these styles to index.css */
+@font-face {
+  font-family: 'SF Pro Display';
+  font-weight: 600;
+  font-style: italic;
+  src: url('./fonts/SFPRODISPLAYSEMIBOLDITALIC.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-weight: 400;
+  font-style: normal;
+  src: url('./fonts/SFPRODISPLAYREGULAR.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-weight: 500;
+  font-style: normal;
+  src: url('./fonts/SFPRODISPLAYMEDIUM.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-weight: 300;
+  font-style: italic;
+  src: url('./fonts/SFPRODISPLAYLIGHTITALIC.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-weight: 900;
+  font-style: italic;
+  src: url('./fonts/SFPRODISPLAYHEAVYITALIC.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-weight: 700;
+  font-style: normal;
+  src: url('./fonts/SFPRODISPLAYBOLD.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-weight: 900;
+  font-style: italic;
+  src: url('./fonts/SFPRODISPLAYBLACKITALIC.woff2') format('woff2');
+}
+
+:root {
+  --bg-color-light: #ffffff;
+  --bg-color-dark: #121212;
+  --text-color-light: #000000;
+  --text-color-dark: #e0e0e0;
+  --card-bg-light: #f8f9fa;  /* Light background for cards */
+  --card-bg-dark: #1f1f1f;  /* Dark background for cards */
+  --card-text-light: #212529;  /* Dark text for cards */
+  --card-text-dark: #f1f1f1;  /* Light text for cards */
+  --date-color-light: #6c757d;  /* Lighter text for date and time in light theme */
+  --date-color-dark: #adb5bd;  /* Lighter text for date and time in dark theme */
+}
+
+body {
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.light {
+  background-color: var(--bg-color-light);
+  color: var(--text-color-light);
+}
+
+.dark {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+}
+
+/* Override Tailwind classes for the light/dark theme */
+.light .bg-light {
+  background-color: var(--bg-color-light);
+}
+
+.dark .bg-dark {
+  background-color: var(--bg-color-dark);
+}
+
+.light .text-light {
+  color: var(--text-color-light);
+}
+
+.dark .text-dark {
+  color: var(--text-color-dark);
+}
+
+.light .card-bg {
+  background-color: var(--card-bg-light);
+  color: var(--card-text-light);
+}
+
+.dark .card-bg {
+  background-color: var(--card-bg-dark);
+  color: var(--card-text-dark);
+}
+
+.light .date-text {
+  color: var(--date-color-light);
+}
+
+.dark .date-text {
+  color: var(--date-color-dark);
+}
+
+.truncate-3-lines {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+/* Button and Header Link Styles */
 button, .header-link {
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  }
-  
-  button.border-dark, .header-link.border-dark {
-    background-color: transparent;
-    color: var(--text-color-light);
-    border-color: var(--text-color-light);
-  }
-  
-  .dark button, .dark .header-link {
-    background-color: var(--bg-color-dark);
-    color: var(--text-color-dark);
-    border-color: var(--text-color-dark);
-  }
-  
-  /* Add these styles to index.css */
-/* Add these styles to index.css */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+button.border-dark, .header-link.border-dark {
+  background-color: transparent;
+  color: var(--text-color-light);
+  border-color: var(--text-color-light);
+}
+
+.dark button, .dark .header-link {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+  border-color: var(--text-color-dark);
+}
+
+/* Hero Section Styles */
 .hero-section {
-    transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Footer Styles */
+/* Footer Styles */
+footer {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark); /* Ensure text is dark for light theme */
   }
   
-  @keyframes float {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
+  .dark footer {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light); /* Ensure text is light for dark theme */
   }
   
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
+  /* Add custom text color class for light theme */
+  .text-custom-light {
+    color: var(--text-color-dark); /* Use --text-color-dark for light theme */
+  }
+  
+  /* Add custom text color class for dark theme */
+  .text-custom-dark {
+    color: var(--text-color-light); /* Use --text-color-light for dark theme */
+  }
+  
+  footer a, footer button {
+    color: inherit; /* Inherit the color from the parent */
+  }
+  
+  footer a:hover, footer button:hover {
+    color: #f9f9f9;
+  }
+  
+  .dark footer a:hover, .dark footer button:hover {
+    color: #6c757d;
   }
   
   
   
 
-
-  
-  
+/* Additional Utility Classes */
+.z-negative {
+  z-index: -1;
+}

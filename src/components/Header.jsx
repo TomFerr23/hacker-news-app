@@ -19,34 +19,34 @@ const Header = ({ theme, onToggleTheme, onSearch, user, signIn, signOut }) => {
           <img src={theme === 'light' ? logoLight : logoDark} alt="Logo" className="w-8 h-8 ml-2" />
         </Link>
       </div>
-      <input
-        type="text"
-        placeholder="Search..."
-        onChange={handleSearchChange}
-        className="border p-2 rounded mr-4 dark:bg-dark dark:text-light"
-      />
-      <div className="flex items-center">
+      <div className="flex items-center space-x-4">
+        <Link to="/about" className="header-link border-dark dark:bg-dark dark:text-light dark:border-light p-2 rounded border-2">
+          About Us
+        </Link>
+        <Link to="/user" className="header-link border-dark dark:bg-dark dark:text-light dark:border-light p-2 rounded border-2">
+          Saved Articles
+        </Link>
         {user ? (
-          <>
-            <img src={user.photoURL} alt="Avatar" className="w-10 h-10 rounded-full mr-4" />
-            <Link to="/user" className="header-link mr-4 border-dark dark:bg-dark dark:text-light dark:border-light p-2 rounded border-2">
-              Saved Articles
-            </Link>
-            <button onClick={signOut} className="border-dark dark:bg-dark dark:text-light dark:border-light p-2 rounded border-2 mr-4">
-              Sign Out
-            </button>
-          </>
+          <button onClick={signOut} className="border-dark dark:bg-dark dark:text-light dark:border-light p-2 rounded border-2">
+            Sign Out
+          </button>
         ) : (
-          <button onClick={signIn} className="border-dark dark:bg-dark dark:text-light dark:border-light p-2 rounded border-2 mr-4">
+          <button onClick={signIn} className="border-dark dark:bg-dark dark:text-light dark:border-light p-2 rounded border-2">
             Sign In
           </button>
         )}
-        <button
-          onClick={onToggleTheme}
-          className="border-dark dark:bg-dark dark:text-light dark:border-light p-2 rounded border-2"
-        >
+        <button onClick={onToggleTheme} className="border-dark dark:bg-dark dark:text-light dark:border-light p-2 rounded border-2">
           Toggle Theme
         </button>
+      </div>
+      <div className="flex items-center">
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={handleSearchChange}
+          className="border p-2 rounded mr-4 dark:bg-dark dark:text-light"
+        />
+        {user && <img src={user.photoURL} alt="Avatar" className="w-10 h-10 rounded-full" />}
       </div>
     </header>
   );

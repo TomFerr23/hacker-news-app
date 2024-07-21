@@ -1,9 +1,19 @@
-// src/components/HeroSection.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import logoLight from '../assets/logo.svg';
 import logoDark from '../assets/logo-dark-theme.svg';
 
 const HeroSection = ({ theme }) => {
+  const navigate = useNavigate();
+
+  const handleScroll = () => {
+    document.getElementById('articles').scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleLearnMore = () => {
+    navigate('/about');
+  };
+
   return (
     <section className="hero-section bg-light dark:bg-dark text-light dark:text-dark py-16 px-12 text-center">
       <h1 className="text-4xl font-bold mb-4">
@@ -16,10 +26,10 @@ const HeroSection = ({ theme }) => {
         Read, explore, and engage with the tech community.
       </p>
       <div className="flex justify-center">
-        <button className="border-dark dark:bg-dark dark:text-light dark:border-light p-4 rounded border-2 mr-4">
+        <button onClick={handleScroll} className="border-dark dark:bg-dark dark:text-light dark:border-light p-4 rounded border-2 mr-4">
           Get Started
         </button>
-        <button className="border-dark dark:bg-dark dark:text-light dark:border-light p-4 rounded border-2">
+        <button onClick={handleLearnMore} className="border-dark dark:bg-dark dark:text-light dark:border-light p-4 rounded border-2">
           Learn More
         </button>
       </div>
