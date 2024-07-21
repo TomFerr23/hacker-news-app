@@ -1,7 +1,7 @@
 import React from 'react';
-import { FaRegClock } from 'react-icons/fa';
+import { FaRegClock, FaRegBookmark, FaBookmark } from 'react-icons/fa';
 
-const NewsItem = ({ title, url, date }) => {
+const NewsItem = ({ id, title, url, date, isBookmarked, toggleBookmark }) => {
   return (
     <div className="card-bg rounded-lg shadow-md overflow-hidden m-4 transition-colors duration-300 flex flex-col justify-between h-full">
       <div className="p-4 flex-1 flex flex-col justify-between">
@@ -10,9 +10,14 @@ const NewsItem = ({ title, url, date }) => {
             {title}
           </a>
         </div>
-        <div className="text-sm text-light dark:text-dark flex items-center mt-4">
-          <FaRegClock className="mr-2" />
-          <span>{new Date(date).toLocaleString()}</span>
+        <div className="text-sm text-light dark:text-dark flex items-center mt-4 justify-between">
+          <div className="flex items-center">
+            <FaRegClock className="mr-2" />
+            <span>{new Date(date).toLocaleString()}</span>
+          </div>
+          <button onClick={() => toggleBookmark(id)}>
+            {isBookmarked ? <FaBookmark /> : <FaRegBookmark />}
+          </button>
         </div>
       </div>
     </div>

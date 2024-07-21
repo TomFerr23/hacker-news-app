@@ -137,21 +137,48 @@
     overflow: hidden;
   }
   
-  button {
+  /* Add these styles to index.css */
+/* Add these styles to index.css */
+button, .header-link {
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   }
   
-  button.border-dark {
+  button.border-dark, .header-link.border-dark {
     background-color: transparent;
     color: var(--text-color-light);
     border-color: var(--text-color-light);
   }
   
-  .dark button {
+  .dark button, .dark .header-link {
     background-color: var(--bg-color-dark);
     color: var(--text-color-dark);
     border-color: var(--text-color-dark);
   }
+  
+  /* Add these styles to index.css */
+/* Add these styles to index.css */
+.hero-section {
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  
+  
 
 
   
