@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font Faces */
 @font-face {
   font-family: 'SF Pro Display';
   font-weight: 100;
@@ -65,6 +66,7 @@
   src: url('./fonts/SFPRODISPLAYBLACKITALIC.woff2') format('woff2');
 }
 
+/* Root Variables */
 :root {
   --bg-color-light: #ffffff;
   --bg-color-dark: #121212;
@@ -78,10 +80,12 @@
   --date-color-dark: #adb5bd;  /* Lighter text for date and time in dark theme */
 }
 
+/* Global Styles */
 body {
   font-family: 'SF Pro Display', sans-serif;
 }
 
+/* Theme Classes */
 .light {
   background-color: var(--bg-color-light);
   color: var(--text-color-light);
@@ -126,7 +130,34 @@ body {
 .dark .date-text {
   color: var(--date-color-dark);
 }
+/* HEADER LOGO ANIMATION */
+/* Existing CSS here... */
 
+/* Shake Animation */
+@keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    50% {
+      transform: translateX(5px);
+    }
+    75% {
+      transform: translateX(-5px);
+    }
+  }
+  
+  /* Header Logo Hover Effect */
+  .header-logo-link:hover .logo-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  /* Remaining CSS here... */
+  
+
+/* Truncate Text */
 .truncate-3-lines {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -151,7 +182,6 @@ button.border-dark, .header-link.border-dark {
   border-color: var(--text-color-dark);
 }
 
-/* Hero Section Styles */
 .hero-section {
   transition: background-color 0.3s, color 0.3s;
 }
@@ -172,7 +202,8 @@ button.border-dark, .header-link.border-dark {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Footer Styles */
+/* Existing CSS here... */
+
 /* Footer Styles */
 footer {
     background-color: var(--bg-color-dark);
@@ -206,10 +237,72 @@ footer {
     color: #6c757d;
   }
   
+  /* Specific Footer Button Styles */
+  footer button {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+  }
   
+  .dark footer button {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+  }
   
+  /* Additional Utility Classes */
+  .z-negative {
+    z-index: -1;
+  }
+  
+  /* Remaining CSS here... */
+  
+
+/* Hero section button hover effects */
+.hero-button {
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.hero-button:hover {
+  background-color: var(--text-color-light);
+  color: var(--text-color-dark);
+  transform: scale(1.05);
+}
+
+.dark .hero-button:hover {
+  background-color: var(--text-color-dark);
+  color: var(--text-color-light);
+}
+
+/* Header button/link hover effects */
+.header-button, .header-link {
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.header-button:hover, .header-link:hover {
+  background-color: var(--text-color-light);
+  color: var(--text-color-dark);
+  transform: scale(1.05);
+}
+
+.dark .header-button:hover, .dark .header-link:hover {
+  background-color: var(--text-color-dark);
+  color: var(--text-color-light);
+}
+
+/* Card hover effects */
+.card-bg {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-bg:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 
 /* Additional Utility Classes */
 .z-negative {
   z-index: -1;
 }
+
+
+
+  

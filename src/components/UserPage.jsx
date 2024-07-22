@@ -1,21 +1,22 @@
-// src/components/UserPage.jsx
-import React, { useEffect, useState } from 'react';
-import { auth, firestore } from '../firebase';
+import React, { useState, useEffect } from 'react';
+import { db } from '../firebase'; // Correctly import db from firebase.js
 import { collection, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { auth } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 const UserPage = () => {
+  const [bookmarkedArticles, setBookmarkedArticles] = useState([]);
   const [user, setUser] = useState(null);
-  const [savedArticles, setSavedArticles] = useState([]);
 
   useEffect(() => {
     const fetchUser = () => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           setUser(user);
-          fetchSavedArticles(user.uid);
+          fetchBookmarks(user.uid);
         } else {
           setUser(null);
+          setBookmarkedArticles([]);
         }
       });
     };
@@ -23,47 +24,44 @@ const UserPage = () => {
     fetchUser();
   }, []);
 
-  const fetchSavedArticles = async (uid) => {
-    const q = query(collection(firestore, 'savedArticles'), where('uid', '==', uid));
+  const fetchBookmarks = async (uid) => {
+    const q = query(collection(db, 'savedArticles'), where('uid', '==', uid));
     const querySnapshot = await getDocs(q);
-    const articles = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    setSavedArticles(articles);
+    const bookmarks = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    setBookmarkedArticles(bookmarks);
   };
 
-  const removeArticle = async (id) => {
-    await deleteDoc(doc(firestore, 'savedArticles', id));
-    setSavedArticles(savedArticles.filter(article => article.id !== id));
+  const removeBookmark = async (articleId) => {
+    if (user) {
+      const docId = (await getDocs(query(collection(db, 'savedArticles'), where('id', '==', articleId), where('uid', '==', user.uid)))).docs[0].id;
+      await deleteDoc(doc(db, 'savedArticles', docId));
+      setBookmarkedArticles(prev => prev.filter(article => article.id !== articleId));
+    }
   };
 
   return (
     <div className="container mx-auto p-4">
-      {user && (
-        <div className="flex items-center mb-4">
-          <img src={user.photoURL} alt="Avatar" className="w-10 h-10 rounded-full mr-4" />
-          <h2 className="text-2xl">{user.displayName}</h2>
-        </div>
-      )}
-      <h3 className="text-xl mb-4">Saved Articles</h3>
-      {savedArticles.length > 0 ? (
-        <ul>
-          {savedArticles.map(article => (
-            <li key={article.id} className="mb-4">
-              <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-blue-500">
-                {article.title}
-              </a>
-              <p className="text-gray-500 text-sm">{new Date(article.date).toLocaleString()}</p>
-              <button onClick={() => removeArticle(article.id)} className="text-red-500">
-                Remove
-              </button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No saved articles yet.</p>
-      )}
-      <button onClick={() => auth.signOut()} className="mt-4 p-2 bg-blue-500 text-white rounded">
-        Log Out
-      </button>
+      <h2 className="text-2xl font-bold mb-4">Saved Articles</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {bookmarkedArticles.map(article => (
+          <div key={article.id} className="card-bg rounded-lg shadow-md overflow-hidden m-4 transition-colors duration-300 flex flex-col justify-between h-full">
+            <div className="p-4 flex-1 flex flex-col justify-between">
+              <div>
+                <a href={article.url} target="_blank" rel="noopener noreferrer" className="block text-lg font-semibold mb-2 truncate-3-lines">
+                  {article.title}
+                </a>
+              </div>
+              <div className="text-sm text-light dark:text-dark flex items-center mt-4 justify-between">
+                <div className="flex items-center">
+                  <button onClick={() => removeBookmark(article.id)}>
+                    Remove Bookmark
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

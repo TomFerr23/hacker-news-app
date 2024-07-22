@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NewsItem from './NewsItem';
-import { firestore } from '../firebase';
+import { db } from '../firebase'; // Import db from firebase.js
 import { collection, addDoc, deleteDoc, doc, query, where, getDocs } from 'firebase/firestore';
 import { auth } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -52,7 +52,7 @@ const NewsList = ({ searchTerm }) => {
   }, []);
 
   const fetchBookmarks = async (uid) => {
-    const q = query(collection(firestore, 'savedArticles'), where('uid', '==', uid));
+    const q = query(collection(db, 'savedArticles'), where('uid', '==', uid));
     const querySnapshot = await getDocs(q);
     const bookmarksSet = new Set(querySnapshot.docs.map(doc => doc.data().id));
     setBookmarks(bookmarksSet);
@@ -66,10 +66,11 @@ const NewsList = ({ searchTerm }) => {
     if (user) {
       const updatedBookmarks = new Set(bookmarks);
       if (updatedBookmarks.has(article.id)) {
-        await deleteDoc(doc(firestore, 'savedArticles', article.id));
+        const docId = (await getDocs(query(collection(db, 'savedArticles'), where('id', '==', article.id), where('uid', '==', user.uid)))).docs[0].id;
+        await deleteDoc(doc(db, 'savedArticles', docId));
         updatedBookmarks.delete(article.id);
       } else {
-        await addDoc(collection(firestore, 'savedArticles'), {
+        await addDoc(collection(db, 'savedArticles'), {
           ...article,
           uid: user.uid,
           date: new Date()

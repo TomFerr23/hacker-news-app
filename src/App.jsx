@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import UserPage from './components/UserPage';
 import ContactPage from './components/ContactPage';
 import AboutPage from './components/AboutPage'; // Import the new AboutPage component
+import CommunityPage from './components/CommunityPage'; // Import the new CommunityPage component
 import './index.css';
 import { auth, signInWithGoogle, logOut } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -62,6 +63,7 @@ const App = () => {
           <Route path="/user" element={<UserPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about" element={<AboutPage />} /> {/* Add the new route */}
+          <Route path="/community" element={<CommunityPage />} /> {/* Add the new route */}
         </Routes>
         <Footer theme={theme} user={user} signIn={signInWithGoogle} signOut={logOut} />
       </div>
