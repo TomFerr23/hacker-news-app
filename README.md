@@ -115,7 +115,7 @@ License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 Contact
-Your Name - Your Email - Your Twitter
+Tom Ferrari - tomferrari.dev@gmail.com - tom_ferrari_
 
 Project Link: https://github.com/your-username/black-lotus-community
 
